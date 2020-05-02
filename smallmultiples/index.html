@@ -53,7 +53,7 @@
 	<div class="container">
 		<div class="content">
 			<div class="row">
-					<h1>Cancer in Iowa</h1>
+					<h1>Access to Food in Navajo county</h1>
 			</div>
 			<hr />
 			<div class="row">
@@ -82,12 +82,12 @@
 			<br />
 			<div class="row">
 				<div class="col-sm-6">
-					<span><p><h3 class='mapTitle'>Lung Cancer</h3>Yearly average number of deaths from lung cancer per 10,000.</p></span>
+					<span><p><h3 class='mapTitle'>Vehicle per Household</h3>The percentage of the population that owns a vehicle</p></span>
 					<div id="divMap1"></div>
 					<div id="divHist1"></div>
 				</div>
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>Adult Smokers</h3><p>Percentage of adult population who smoke.</p>
+					<h3 class='mapTitle'>Low Supermarket Access</h3><p>The percentage of households living 10 miles from a supermarkey</p>
 					<div id="divMap2"></div>
 					<div id="divHist2"></div>
 				</div>
@@ -95,7 +95,7 @@
 
 			<div class="row">
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>Healthcare Cost</h3><p>Average cost of healthcare.</p>
+					<h3 class='mapTitle'>Low-Income</h3><p>The percentage of the population that earns a low-income</p>
 					<div id="divMap3"></div>
 					<div id="divHist3"></div>
 				</div>
@@ -124,13 +124,13 @@
 	// 0 is the start, whereas 1 i the end of each panel.
 	// If you want to put the legend on the left, then use 0.
 	// legendY = 0.5 puts the legend in the middle of the Y Axis.
-	var legendX = 0, legendY = 0.5
+	var legendX = 0.2, legendY = 0.5
 
 	// id attribute and the name attribute to be used in the tooltip
 	var idAttribute = 'GEOID', nameAttribute = 'GEOID';
 
 	// Find the abbreviations of color names from https://colorbrewer2.org/
-	var colors =  colorbrewer.Purples;
+	var colors =  colorbrewer.Reds;
 
 	// Chart/map attributes (variables) and formats based on the divs defined above
 	// For attribute 1 (the same for all others), see the description of the parameters below.
@@ -139,17 +139,17 @@
 	// att1format: enter the d3.format string to display the variables in the format you like
 	// Check this link on how to specify the desired format:
 	// https://observablehq.com/@d3/d3-format
-	var att1 = 'food_accessability_LILATracts_1And10', att1alias = 'Lung Cancer Death Density per 10,000', att1format = '.0f',
-	att2 = 'food_accessability_laaian1', att2alias =  '% Smokers', att2format = '.0f',
-	att3 = 'food_accessability_lawhite1', att3alias = '$ Spent', att3format = '.0f',
-	att4 = 'food_accessability_TractSeniors', att4alias = '', att4format = '.0f';
+	var att1 = 'food_accessability_TractHUNV', att1alias = '% of Population with a Vehicle', att1format = '.0f',
+	att2 = 'food_accessability_lapop10', att2alias =  '% of Population Living 10 Miles from Supermarket', att2format = '.0f',
+	att3 = 'food_accessability_TractLOWI', att3alias = '% Low-Income', att3format = '.0f',
+	att4 = 'food_accessability_TractSeniors', att4alias = '% Seniors', att4format = '.0f';
 
   // enter below all variables that should be normalized. If you would like to multiple the variables
 	// with a constant value enter them in multiplyBy array. If there is no need for multiplication,
 	// simply enter 1 for each value in multiplyBy.
-  var attributesToBeNormalized = [att1, att4];
-	var multiplyBy = [10000, 100];
-	var divideBy = ['Population', 'Population'];
+  var attributesToBeNormalized = [att1, att2, att3, att4];
+	var multiplyBy = [100, 100, 100, 100];
+	var divideBy = ['food_accessability_POP2010', 'food_accessability_OHU2010', 'food_accessability_POP2010', 'food_accessability_POP2010' ];
 	// if your variables are not raw counts and they are already normalized, comment out above, and
 	//uncomment below:
 	// var attributesToBeNormalized = [];
