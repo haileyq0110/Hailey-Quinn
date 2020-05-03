@@ -118,8 +118,8 @@
 	// TODO: Change the variables below to customize the small multiples interface for your data
 	var polygonJSONFile = 'data/navajo.json'
 	// change the projection if needed *d3.geoAlbers()*
-	var projection = d3.geoAlbers();
-	var widthheightRatio = 0.4;
+	var projection = d3.geoTransverseMercator()
+	var widthheightRatio = 0.8;
 	// Relative placement of legend that ranges between 0 and 1.
 	// 0 is the start, whereas 1 i the end of each panel.
 	// If you want to put the legend on the left, then use 0.
@@ -130,7 +130,7 @@
 	var idAttribute = 'GEOID', nameAttribute = 'GEOID';
 
 	// Find the abbreviations of color names from https://colorbrewer2.org/
-	var colors =  colorbrewer.Reds;
+	var colors =  colorbrewer.PuBuGn;
 
 	// Chart/map attributes (variables) and formats based on the divs defined above
 	// For attribute 1 (the same for all others), see the description of the parameters below.
@@ -237,7 +237,7 @@
 			var polygons = data;
 			var proj = d3.geoPath().pointRadius(2);
 			// TODO: change the projection details here below - including specific parameters such as rotation, extent, etc.
-			proj.projection(projection.fitSize([width, height], polygons));
+			proj.projection(projection.rotate([110 + 10 / 60, -31]).fitSize([width, height], polygons));
 
 			////////////////////////////////////////////////////
 			// Normalize based multiplyby and divideby values
@@ -362,12 +362,12 @@
 						panel.select('.legendQuant').call(holdLegend.scale(current_scale));
 
 						// add north arrow
-						// panel
-						// .append('path')
-						// .attr('id', 'arrow')
-						// .attr("d", "M 6 0 12 12 6 9 0 12")
-						// .attr('fill', "black")
-						// .attr("transform", "translate(" + margin.left + "," + margin.top + ") rotate("+ 0 +")");
+						 panel
+						 .append('path')
+						 .attr('id', 'arrow')
+					 .attr("d", "M 6 0 12 12 6 9 0 12")
+					  .attr('fill', "black")
+						 .attr("transform", "translate(" + margin.left + "," + margin.top + ") rotate("+ 0 +")");
 
 					}); // end for each
 				});
